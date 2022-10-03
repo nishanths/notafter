@@ -61,7 +61,7 @@ func main() {
 		wg.Add(1)
 		go func(idx int) {
 			defer wg.Done()
-			end, err := certEnd(ctx, ds[idx])
+			end, err := getCertEnd(ctx, ds[idx])
 			items[idx] = Item{ds[idx], end, err}
 		}(i)
 	}
@@ -138,7 +138,7 @@ func expiryInfo(end, now time.Time) string {
 	}
 }
 
-func certEnd(ctx context.Context, domain string) (time.Time, error) {
+func getCertEnd(ctx context.Context, domain string) (time.Time, error) {
 	dialer := &tls.Dialer{
 		Config: &tls.Config{
 			InsecureSkipVerify: true,
