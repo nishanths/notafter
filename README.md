@@ -18,4 +18,4 @@ go install github.com/nishanths/notafter
 See `notafter -h`. You may want to run the command regularly as a part of a
 cron or a recursive at(1) job.
 
-[1]: https://pkg.go.dev/github.com/nishantsh/notafter
+[1]: https://pkg.go.dev/github.com/nishanths/notafter
