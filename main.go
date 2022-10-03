@@ -1,6 +1,6 @@
-// Command notafter sends notifications via mail(1) if TLS certs will expire
-// soon or have expired. The list of domains or subdomains is read from
-// standard input, one per line.
+// Command notafter sends notifications via mail(1) if TLS certs for the
+// specified domains will expire soon or have expired. The list of domains is
+// read from standard input, one per line.
 package main
 
 import (
@@ -127,7 +127,7 @@ func expiryInfo(end, now time.Time) string {
 	gap := end.Sub(now)
 	switch {
 	case gap > expiryThreshold:
-		return "ok"
+		return "still good"
 	case gap < 0:
 		return "already expired"
 	case gap < 24*time.Hour:
