@@ -129,9 +129,9 @@ func expiryInfo(end, now time.Time) string {
 	case gap > expiryThreshold:
 		return "still good"
 	case gap < 0:
-		return "already expired"
+		return "expired"
 	case gap < 24*time.Hour:
-		return "expires in less than a day"
+		return "expires really soon"
 	default:
 		n := gap / (24 * time.Hour)
 		return fmt.Sprintf("expires in %d %s", n, pluralize(int64(n), "day"))
