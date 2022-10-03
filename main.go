@@ -1,6 +1,11 @@
 // Command notafter sends notifications via mail(1) if TLS certs for the
 // specified domains will expire soon or have expired. The list of domains is
 // read from standard input, one per line.
+//
+// The program exits with a non-zero exit status upon internal errors (e.g.
+// failure to invoke mail(1)). On the other hand, any failures to reach
+// specified domains do not result in a non-zero exit status; such errors are
+// mailed instead, and the command will exit with a zero status.
 package main
 
 import (
