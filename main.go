@@ -132,7 +132,7 @@ func expiryInfo(end, now time.Time) string {
 	gap := end.Sub(now)
 	switch {
 	case gap > expiryThreshold:
-		return "still good"
+		return "good"
 	case gap < 0:
 		return "expired"
 	case gap < 24*time.Hour:
