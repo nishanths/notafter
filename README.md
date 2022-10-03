@@ -10,7 +10,7 @@ certificates.
 With Go 1.19 or higher:
 
 ```
-go install github.com/nishanths/notafter
+go install github.com/nishanths/notafter@latest
 ```
 
 ## Usage
