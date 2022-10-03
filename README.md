@@ -16,6 +16,7 @@ go install github.com/nishanths/notafter
 ## Usage
 
 See `notafter -h`. You may want to run the command regularly as a part of a
-cron or a recursive at(1) job.
+cron or a recursive [at(1)][2] job.
 
 [1]: https://pkg.go.dev/github.com/nishanths/notafter
+[2]: https://man7.org/linux/man-pages/man1/at.1p.html
