@@ -174,10 +174,7 @@ func domains(r io.Reader) ([]string, error) {
 	for scanner.Scan() {
 		out = append(out, strings.TrimSpace(scanner.Text()))
 	}
-	if err := scanner.Err(); err != nil {
-		return nil, err
-	}
-	return out, nil
+	return out, scanner.Err()
 }
 
 func pluralize(n int64, noun string) string {
