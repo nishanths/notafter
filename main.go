@@ -77,10 +77,10 @@ func main() {
 		os.Exit(0)
 	}
 
-	body := mailBody(items, now)
+	body := resultsBody(items, now)
 
 	// print results to stdout.
-	fmt.Println(body)
+	fmt.Print(body)
 
 	// mail the results.
 	err = sendMail(recipient, body)
@@ -89,18 +89,18 @@ func main() {
 	}
 }
 
-func mailBody(items []Item, now time.Time) io.Reader {
+func resultsBody(items []Item, now time.Time) string {
 	var buf bytes.Buffer
 	for _, i := range items {
 		buf.WriteString(i.format(now))
 		buf.WriteByte('\n')
 	}
-	return &buf
+	return buf.String()
 }
 
-func sendMail(recipient string, body io.Reader) error {
+func sendMail(recipient string, body string) error {
 	cmd := exec.Command("mail", "-s", mailSubject, recipient)
-	cmd.Stdin = body
+	cmd.Stdin = strings.NewReader(body)
 	return cmd.Run()
 }
 
