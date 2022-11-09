@@ -77,13 +77,16 @@ func main() {
 		os.Exit(0)
 	}
 
-	if err := notify(items, now, recipient); err != nil {
+	body := mailBody(items, now)
+
+	// print results to stdout.
+	fmt.Println(body)
+
+	// mail the results.
+	err = sendMail(recipient, body)
+	if err != nil {
 		log.Fatal(err)
 	}
-}
-
-func notify(items []Item, now time.Time, recipient string) error {
-	return sendMail(recipient, mailBody(items, now))
 }
 
 func mailBody(items []Item, now time.Time) io.Reader {
