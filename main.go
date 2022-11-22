@@ -26,8 +26,8 @@ import (
 )
 
 const (
-	expiryThreshold = 30 * 24 * time.Hour
-	mailSubject     = "notafter: domain cert expiries"
+	notifyExpiryThreshold = 28 * 24 * time.Hour
+	mailSubject           = "notafter: domain cert expiries"
 )
 
 func usage() {
@@ -114,7 +114,7 @@ func (i Item) needsNotify(now time.Time) bool {
 	if i.err != nil {
 		return true
 	}
-	if i.end.Sub(now) > expiryThreshold {
+	if i.end.Sub(now) > notifyExpiryThreshold {
 		return false
 	}
 	return true
@@ -134,7 +134,7 @@ func (i Item) format(now time.Time) string {
 func expiryInfo(end, now time.Time) string {
 	gap := end.Sub(now)
 	switch {
-	case gap > expiryThreshold:
+	case gap > notifyExpiryThreshold:
 		return "good"
 	case gap < 0:
 		return "expired"
